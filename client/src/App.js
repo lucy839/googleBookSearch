@@ -5,6 +5,7 @@ import Saved from "./pages/Saved";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 
+// Set up the router
 function App() {
   return (
     <Router>
@@ -17,7 +18,6 @@ function App() {
           <Route component ={NoMatch}></Route>
         </Switch>
       </div>
-
     </Router>
 
   );
