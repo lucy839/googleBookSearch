@@ -40,6 +40,7 @@ class Saved extends Component {
           <h3>Books that You Saved</h3>
           <SavedResults savedBooks={this.state.books} handleDeleteButton={this.handleDeleteButton} />
         </Container>
+        <br></br>
         <Footer />
       </Container>
     )

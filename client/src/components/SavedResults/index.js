@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.css";
 import { Row, Col } from "../Grid"
 
 // Display of saved results
@@ -19,7 +20,7 @@ const SavedResult = props => {
                     <div className="article">
                         {props.savedBooks.map(savedbook => {
                             return (
-                                <li className="saved-list list-group-item">
+                                <li className="saved-list list-group-item" key={savedbook._id}>
                                     <Row className="SearchResult" id={savedbook.title + "Card"} key={savedbook._id}>
                                         <Col size="2" className="image">
                                             <img src={savedbook.image} alt={savedbook.title} />

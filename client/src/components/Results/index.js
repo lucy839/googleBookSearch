@@ -1,5 +1,6 @@
 import React from "react";
 import {Row, Col} from "../Grid"
+import "./style.css";
 
 const Results = props => {
     // If there is no results, display this
@@ -39,7 +40,7 @@ const Results = props => {
                                     </Row>
                                     <br></br>
                                     <Row className="buttonDiv ">
-                                        <button className="savebtn btn-primary" id={book.id} onClick={(event) => props.handleSavedButton(event)}>
+                                        <button className="save btn btn-primary" id={book.id} onClick={(event) => props.handleSavedButton(event)}>
                                             Save
                                         </button>
                                         <a href={book.link} target="_blank" rel="noopener noreferrer">

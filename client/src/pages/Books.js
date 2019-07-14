@@ -64,7 +64,7 @@ class Books extends Component {
       image: savedBooks.image,
       link: savedBooks.infoLink
     })
-      .then(res => console.log(res))
+      .then(this.setState({message: alert("Book Saved!")}))
       .catch(err => console.log(err));
   }
 
@@ -88,6 +88,7 @@ class Books extends Component {
           <h3>Search Results</h3>
           <Results books={this.state.books} handleSavedButton={this.handleSavedButton} />
         </Container>
+        <br></br>
         <Footer />
       </Container>
     );
