@@ -1,53 +1,50 @@
 import React from "react";
-// import "./style.css";
 import {Row, Col} from "../Grid"
 
 const Results = props => {
-    console.log(props);
+    // If there is no results, display this
     return (props.books.length === 0) ? (
         <div className="card">
             <div className="card-body player">
                 <div className="article">
                     <h5> No Articles Searched </h5>
-                    {/* <h3>Search Results</h3> */}
                 </div>
             </div>
         </div>
     ) : (
+            // else display results
             <div className="card">
                 <div className="card-body player">
                     <div className="article">
-                        {/* <h3>Search Results</h3> */}
                         {props.books.map(book => {
                             return (
                                 <li className="search-list list-group-item">
                                     <Row className="SearchResult row" id={book.title + "Card"} key={book._id}>
-                                        {/* col-3 show image of the book */}
-                                        <Col size="2" className="bookImage">
+                                        <Col size="2" className="image">
                                             <img src={book.image} alt={book.title} />
                                         </Col>
                                         <Col size="1" className="emptyCol"/>
                                         {/* col-9 show information of the book */}
-                                        <Col size="9" className="bookInfo">
+                                        <Col size="9" className="info">
                                             <Row>
-                                                <h3 className="bookTitle">{book.title}</h3>
+                                                <h3 className="title">{book.title}</h3>
                                             </Row>
                                             <Row>
-                                                <h4 className="bookAuthor">{book.author}</h4>
+                                                <h4 className="author">{book.author}</h4>
                                             </Row>
                                             <Row>
-                                                <p className="bookDescription">{book.description}</p>
+                                                <p className="description">{book.description}</p>
                                             </Row>
                                         </Col>
                                     </Row>
                                     <br></br>
                                     <Row className="buttonDiv ">
-                                        <button className="saveBook btn btn-primary" id={book.id} onClick={(event) => props.handleSavedButton(event)}>
-                                            Save Book
+                                        <button className="savebtn btn-primary" id={book.id} onClick={(event) => props.handleSavedButton(event)}>
+                                            Save
                                         </button>
                                         <a href={book.link} target="_blank" rel="noopener noreferrer">
-                                            <button className="viewBook btn btn-success">
-                                                View Book
+                                            <button className="view btn btn-success">
+                                                View
                                         </button>
                                         </a>
                                     </Row>
