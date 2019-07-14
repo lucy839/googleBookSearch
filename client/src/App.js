@@ -4,8 +4,9 @@ import Saved from "./pages/Saved";
 import Search from "./pages/Search";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
-import Footer from "./components/Footer"
-import "./App.css"
+
+// import Jumbotron from "./components/Jumbotron";
+// import "./App.css"
 
 function App() {
   return (
@@ -13,22 +14,23 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          <Route exact path="/" component={Search} />
-          <Route exact path="/saved" component={Saved} />
-          <Route exact path="/saved/:id" component={Saved} />
+          <Route path="/" exact component={Search} />
+          <Route path="/saved" exact component={Saved} />
+          <Route path="/saved/:id" exact component={Saved} />
           <Route component={NoMatch} />
         </Switch>
-
-        <header class="header">
+        {/* <Jumbotron/> */}
+        {/* <header class="header">
           <h1>(React) Google Books Search</h1>
           <h2>Search for and Save Books of Interest</h2>
-        </header>
-        <Footer />
+        </header> */}
+     
       </div>
 
       {/* <Books /> */}
 
     </Router >
+  
   );
 }
 

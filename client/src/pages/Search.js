@@ -3,8 +3,8 @@ import API from "../utils/API";
 import Jumbotron from "../components/Jumbotron";
 import { Container, Row, Col } from "../components/Grid";
 import SearchForm from "../components/SearchForm";
-import SearchResult from "../components/SearchResult"
-
+import Results from "../components/Results"
+import Footer from "../components/Footer"
 
 class SearchBooks extends Component {
     //create state
@@ -52,23 +52,40 @@ class SearchBooks extends Component {
             })
             .catch(err => this.setState({ error: err.items }));
     }
-
+    saveBooks = (bookdata) => {
+        API.saveBook(bookdata)
+        .then(res => {this.setState({ message: alert("Your book is saved") })})
+        .catch(err => console.log(err))
+    }
     handleSavedButton = event => {
         // console.log(event)
         event.preventDefault();
-        console.log(this.state.books)
+        // console.log(this.state.books)
         let savedBooks = this.state.books.filter(book => book.id === event.target.id)
         savedBooks = savedBooks[0];
-        API.saveBook(savedBooks)
-            .then(this.setState({ message: alert("Your book is saved") }))
-            .catch(err => console.log(err))
+        console.log(savedBooks)
+        API.saveBook({
+            // key: result.id,
+            // id: result.id,
+            title: savedBooks.title,
+            author: savedBooks.authors,
+            description: savedBooks.description,
+            image: savedBooks.image,
+            link: savedBooks.infoLink})
+            .then(res => {this.setState({ message: alert("Your book is saved") })})
+                .catch(err => console.log(err))
+        // }
+        // this.saveBooks(savedBooks);
+        // API.saveBook(savedBooks)
+        //     .then(res => {this.setState({ message: alert("Your book is saved") })})
+        //     .catch(err => console.log(err))
     }
     render() {
         return (
             <Container fluid>
-                <Jumbotron>
+                <Jumbotron/> {/*
                     <h1 className="text-white">Find Your Favorite Books with GoogleBook API</h1>
-                </Jumbotron>
+                </Jumbotron> */}
                 <Container>
                     <Row>
                         <Col size="12">
@@ -81,8 +98,10 @@ class SearchBooks extends Component {
                 </Container>
                 <br></br>
                 <Container>
-                    <SearchResult books={this.state.books} handleSavedButton={this.handleSavedButton} />
+                    <h3>Search Results</h3>
+                    <Results books={this.state.books} handleSavedButton={this.handleSavedButton} />
                 </Container>
+                <Footer />
             </Container>
         )
     }
