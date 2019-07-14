@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// Set up the data schema
 const bookSchema = new Schema({
   title: { type: String, required: true },
   authors: [{type: String, required: true}],
