@@ -1,5 +1,6 @@
 import React from "react";
 
+// Jumbotron
 function Jumbotron() {
   return (
     <div
