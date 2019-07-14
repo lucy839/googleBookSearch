@@ -8,7 +8,7 @@
 
 ## Demo
 - https://immense-river-48976.herokuapp.com/
-- ![Alt text](public/demo.png?raw=true  "demo")
+- ![Alt text](client/public/demo.png?raw=true  "demo")
 
 ## Installation
 - To run the application locally, first clone this repository with the following command.
