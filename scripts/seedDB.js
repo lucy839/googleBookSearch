@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 const db = require("../models");
 
-// This file empties the Books collection and inserts the books below
-
+// Connect to database
 mongoose.connect(
   process.env.MONGODB_URI ||
   "mongodb://localhost/googlebooks"
 );
 
+// Feed one seed
 const bookSeed = [
   {
     title: "Fantastic Beasts and Where to Find Them: The Original Screenplay",
@@ -18,6 +18,7 @@ const bookSeed = [
   }
 ];
 
+// This file empties the Books collection and inserts the books below
 db.Book
   .remove({})
   .then(() => db.Book.collection.insertMany(bookSeed))
