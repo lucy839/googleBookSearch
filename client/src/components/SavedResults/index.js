@@ -1,62 +1,60 @@
 import React from "react";
-// import "./style.css"
-import {Row, Col} from "../Grid"
+import { Row, Col } from "../Grid"
 
+// Display of saved results
 const SavedResult = props => {
-    console.log(props)
+    // if there is no books saved, display this
     return (props.savedBooks.length === 0) ? (
         <div className="card">
             <div className="card-body player">
                 <div className="article">
-                    {/* <h3>Books that You Saved</h3> */}
                     <h5>No Books Saved</h5>
                 </div>
             </div>
         </div>
-    ):(
-        <div className="card">
-            <div className="card-body player">
-                <div className="article">
-                    {/* <h3>Books that You Saved</h3> */}
-                    {props.savedBooks.map(savedbook => {
-                        return (
-                            <li className="saved-list list-group-item">
-                                <Row className="SearchResult" id={savedbook.title + "Card"} key={savedbook._id}>
-                                    {/* col-3 show image of the book */}
-                                    <Col size="2" className="bookImage">
-                                        <img src={savedbook.image} alt={savedbook.title} />
-                                    </Col>
-                                    <Col size="1" className="emptyCol"/>
-                                    {/* col-9 show information of the book */}
-                                    <Col size="9" className="bookInfo">
-                                        <Row>
-                                            <h2 className="bookTitle">{savedbook.title}</h2>
-                                        </Row>
-                                        <Row>
-                                            <h3 className="bookAuthor">{savedbook.authors}</h3>
-                                        </Row>
-                                        <Row>
-                                            <p className="bookDescription">{savedbook.description}</p>
-                                        </Row>
-                                    </Col>
-                                </Row>
-                                <br></br>
-                                <Row className="buttonDiv ">
-                                    <button className="deleteBook btn btn-danger" id={savedbook._id} onClick={() => props.handleDeleteButton(savedbook._id)}>
-                                        Delete Book
+    ) : (
+            // else display books saved
+            <div className="card">
+                <div className="card-body player">
+                    <div className="article">
+                        {props.savedBooks.map(savedbook => {
+                            return (
+                                <li className="saved-list list-group-item">
+                                    <Row className="SearchResult" id={savedbook.title + "Card"} key={savedbook._id}>
+                                        <Col size="2" className="image">
+                                            <img src={savedbook.image} alt={savedbook.title} />
+                                        </Col>
+                                        <Col size="1" className="emptyCol" />
+                                        <Col size="9" className="info">
+                                            <Row>
+                                                <h2 className="title">{savedbook.title}</h2>
+                                            </Row>
+                                            <Row>
+                                                <h3 className="author">{savedbook.authors}</h3>
+                                            </Row>
+                                            <Row>
+                                                <p className="description">{savedbook.description}</p>
+                                            </Row>
+                                        </Col>
+                                    </Row>
+                                    <br></br>
+                                    <Row className="buttonDiv ">
+                                        <button className="delete btn btn-danger" id={savedbook._id} onClick={() => props.handleDeleteButton(savedbook._id)}>
+                                            Delete
                                     </button>
-                                    <a href={savedbook.link} target="_blank" rel="noopener noreferrer">
-                                        <button className="viewBook btn btn-success">
-                                            View Book
+                                        <a href={savedbook.link} target="_blank" rel="noopener noreferrer">
+                                            <button className="view btn btn-success">
+                                                View
                                         </button>
-                                    </a>
-                                </Row>
-                            </li>
-                        );
-                    })}
+                                        </a>
+                                    </Row>
+                                </li>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
 }
+
 export default SavedResult
