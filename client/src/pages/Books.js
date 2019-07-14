@@ -5,8 +5,10 @@ import API from "../utils/API";
 // import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 // import { List, ListItem } from "../components/List";
-import { Input, FormBtn } from "../components/Form";
+// import { Input, FormBtn } from "../components/Form";
 import Results from "../components/Results"
+import Footer from "../components/Footer"
+import SearchForm from "../components/SearchForm";
 
 class Books extends Component {
   state = {
@@ -17,17 +19,17 @@ class Books extends Component {
     // save:[]
   };
 
-  componentDidMount() {
-    this.loadBooks();
-  }
+  // componentDidMount() {
+  //   this.loadBooks();
+  // }
 
-  loadBooks = () => {
-    API.getBooks()
-      .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-      )
-      .catch(err => console.log(err));
-  };
+  // loadBooks = () => {
+  //   API.getBooks()
+  //     .then(res =>
+  //       this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+  //     )
+  //     .catch(err => console.log(err));
+  // };
 
   deleteBook = id => {
     API.deleteBook(id)
@@ -110,43 +112,43 @@ class Books extends Component {
   render() {
     return (
       <Container fluid>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>What Books Should I Read?</h1>
-            </Jumbotron>
+        <Jumbotron />
+        <Container>
+          <Row>
+            <Col size="12">
+              <SearchForm
+                handleFormSubmit={this.handleFormSubmit}
+                handleInputChange={this.handleInputChange}
+              />
+              {/* <div className="form-group">
             <form>
+            <label className="BookSearchLabel"><h3>Search For Book</h3></label>
+            <br></br>
               <Input
                 value={this.state.search}
                 onChange={this.handleInputChange}
                 name="search"
-                placeholder="Search (required)"
+                placeholder="Enter Book's Name"
               />
-              {/* <Input
-                value={this.state.author}
-                onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
-              />
-              <TextArea
-                value={this.state.synopsis}
-                onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
-              /> */}
               <FormBtn
                 onClick={this.handleFormSubmit}
               >
                 Submit Book
               </FormBtn>
             </form>
-          </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Books On My List</h1>
-            </Jumbotron>
-            <Results books={this.state.books} handleSavedButton={this.handleSavedButton} />
-            {/* {this.state.books.length ? (
+            </div> */}
+            </Col>
+          </Row>
+        </Container>
+        <br></br>
+
+        <Container>
+          <h3>Search Results</h3>
+          {/* <Jumbotron> */}
+          {/* <h1>Books On My List</h1> */}
+          {/* / </Jumbotron> */}
+          <Results books={this.state.books} handleSavedButton={this.handleSavedButton} />
+          {/* {this.state.books.length ? (
               <List>
                 {this.state.books.map(book => (
                   <ListItem key={book._id}>
@@ -162,8 +164,9 @@ class Books extends Component {
             ) : (
               <h3>No Results to Display</h3>
             )} */}
-          </Col>
-        </Row>
+        </Container>
+        {/* </Row> */}
+        <Footer />
       </Container>
     );
   }
